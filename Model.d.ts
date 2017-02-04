@@ -2,7 +2,7 @@
 /******************      Model         **************/
 
 declare class mxCell {
-    
+
     id: any;
     value;
     geometry;
@@ -62,6 +62,19 @@ declare class mxCell {
     clone(): mxCell;
 
     cloneValue();
+
+    constructor(
+        value?: any,
+        geometry?: mxGeometry,
+        style?: string);
 }
- 
-/******************      Model end     **************/
+
+declare class mxGeometry {
+    constructor(
+        x: number,
+        y: number,
+        width: number,
+        height: number);
+}
+
+    /******************      Model end     **************/

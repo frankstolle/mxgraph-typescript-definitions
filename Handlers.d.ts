@@ -31,14 +31,14 @@ declare class mxCellHighlight {
 
     /**
      * Creates and returns the highlight shape for the given state.
-     */ 
+     */
     drawHighlight(): void;
 
     /**
      * Creates and returns the highlight shape for the given state.
      */
     createShape(): void;
-    
+
     /** Updates the highlight after a change of the model or view. */
     repaint(): void;
 
@@ -129,7 +129,7 @@ declare class mxCellMarker {
 
     /**
      * Returns true if hotspot is used in intersects.
-     */ 
+     */
     isHotspotEnabled(): boolean;
 
     /**
@@ -151,7 +151,7 @@ declare class mxCellMarker {
      * Resets the state of the cell marker.
      */
     reset(): any;
-    
+
     /**
      * Processes the given event and cell and marks the state returned by getState with the color returned by 
      * getMarkerColor.  If the markerColor is not null, then the state is stored in markedState.  If isValidState 
@@ -183,7 +183,7 @@ declare class mxCellMarker {
      * stored in validState.  The return value of this method is used as the argument for getMarkerColor.
      * @param {mxCellState} state
      */
-    isValidState(state: mxCellState): void;    
+    isValidState(state: mxCellState): void;
 
     /**
      * Returns the valid- or invalidColor depending on the value of isValid.  The given mxCellState is ignored by this implementation.
@@ -191,26 +191,26 @@ declare class mxCellMarker {
      * @param {mxCellState} state
      * @param {boolean} isValid
      */
-    getMarkerColor(evt: mxEvent, state: mxCellState, isValid: boolean): string;
+    getMarkerColor(evt: mxEventType, state: mxCellState, isValid: boolean): string;
 
     /**
      * Uses getCell, getStateToMark and intersects to return the mxCellState for the given mxMouseEvent.
      * @param {mxMouseEvent} me
      */
     getState(me: mxMouseEvent): mxCellState;
-    
+
     /**
      * Returns the mxCell for the given event and cell.  This returns the given cell.
      * @param {mxMouseEvent} me
      */
     getCell(me: mxMouseEvent): mxCell;
-    
+
     /**
      * Returns the mxCellState to be marked for the given mxCellState under the mouse.  This returns the given state.
      * @param {mxCellState} state
      */
     getStateToMark(state: mxCellState): mxCellState;
-    
+
     /**
      * Returns true if the given coordinate pair intersects the given state.  This returns true if the hotspot is 0 
      * or the coordinates are inside the hotspot for the given cell state.
@@ -218,7 +218,7 @@ declare class mxCellMarker {
      * @param me
      */
     intersects(state, me): boolean;
-    
+
     /**
      * Destroys the handler and all its resources and DOM nodes.
      */
@@ -227,7 +227,7 @@ declare class mxCellMarker {
 }
 
 declare class mxConstraintHandler {
-    
+
 }
 
 declare class mxEdgeHandler {
@@ -255,7 +255,7 @@ declare class mxEdgeHandler {
     /** Holds the mxShape that represents the preview edge. */
     shape: mxShape;
 
-    /** Holds the mxShapes that represent the points. */ 
+    /** Holds the mxShapes that represent the points. */
     bends: mxShape[];
 
     /** Holds the mxShape that represents the label position. */
@@ -323,19 +323,19 @@ declare class mxEdgeHandler {
      * Returns true if virtual bends should be added.  This returns true if virtualBendsEnabled is true and the current style allows and renders custom waypoints.
      * @param {mxEvent} evt
      */
-    isVirtualBendsEnabled(evt: mxEvent): boolean;
+    isVirtualBendsEnabled(evt: mxEventType): boolean;
 
     /**
      * Returns true if the given event is a trigger to add a new point.  This implementation returns true if shift is pressed.
      * @param {mxEvent} evt
      */
-    isAddPointEvent(evt: mxEvent): boolean;
+    isAddPointEvent(evt: mxEventType): boolean;
 
     /**
      * Returns true if the given event is a trigger to remove a point.  This implementation returns true if shift is pressed.
      * @param {mxEvent} evt
-     */ 
-    isRemovePointEvent(evt: mxEvent): boolean;
+     */
+    isRemovePointEvent(evt: mxEventType): boolean;
 
     /**
      * Returns the list of points that defines the selection stroke.
@@ -363,7 +363,7 @@ declare class mxEdgeHandler {
      * Returns <mxConstants.EDGE_SELECTION_DASHED>.
      */
     isSelectionDashed(): boolean;
-    
+
     /**
      * Returns true if the given cell is connectable.  This is a hook to disable floating connections.  This implementation returns true.
      * @param {mxCell} cell
@@ -475,7 +475,7 @@ declare class mxEdgeHandler {
 
     /**
      * Returns the tolerance for the guides.  Default value is gridSize * scale / 2.
-     */ 
+     */
     getSnapToTerminalTolerance(): number;
 
     /**
@@ -495,7 +495,7 @@ declare class mxEdgeHandler {
      * @param {number} length
      */
     roundLength(length: number): number;
-    
+
     /**
      * Returns true if snapToTerminals is true and if alt is not pressed.
      * @param me
@@ -609,7 +609,7 @@ declare class mxEdgeHandler {
      * @param {mxCellState} state
      * @param {mxEvent} evt
      */
-    addPoint(state: mxCellState, evt: mxEvent): void;
+    addPoint(state: mxCellState, evt: mxEventType): void;
 
     /**
      * Adds a control point at the given point.
@@ -624,7 +624,7 @@ declare class mxEdgeHandler {
      * @param {mxCellState} state
      * @param {number} index
      */
-    removePoint(state: mxCellState, index: number): void; 
+    removePoint(state: mxCellState, index: number): void;
 
     /**
      * Returns the fillcolor for the handle at the given index.
@@ -774,4 +774,4 @@ declare class mxVertexHandler {
     destroy();
 }
 
-/******************      Handler end     **************/
+    /******************      Handler end     **************/
