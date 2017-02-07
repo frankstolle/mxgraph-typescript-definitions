@@ -69,12 +69,28 @@ declare class mxCell {
         style?: string);
 }
 
-declare class mxGeometry {
+declare class mxGeometry extends mxRectangle {
     constructor(
         x: number,
         y: number,
         width: number,
         height: number);
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+
+    points: mxPoint[];
+
+    relative: boolean;
+
+    getTerminalPoint(isSource: boolean): mxPoint;
+    setTerminalPoint(point: mxPoint,
+        isSource: boolean): void;
+
+}
+
+declare class mxGraphModel {
 }
 
     /******************      Model end     **************/

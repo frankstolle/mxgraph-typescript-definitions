@@ -75,6 +75,9 @@ declare class mxEventSource {
      */
     addListener(name: any, func: Util.EventHandler);
 
+    fireEvent(
+        evt: mxEventObject,
+        sender?);
 }
 
 /**
@@ -208,6 +211,10 @@ declare class mxEventType {
     isAltDown(evt: Event): boolean;
     isMultiTouchEvent(evt: Event): boolean;
     isShiftDown(evt: Event): boolean;
+    isTouchEvent(evt: Event): boolean;
+    isMetaDown(evt: Event): boolean;
+    isControlDown(evt: Event): boolean;
+
     addGestureListeners(
         node: Node,
         startListener?: Function,
@@ -275,13 +282,17 @@ declare class mxRectangle extends mxPoint {
     grow(amount: number);
     add(rect: mxRectangle);
 
+    getCenterX(): number;
+    getCenterY(): number;
+
     static fromRectangle(rect: mxRectangle): mxRectangle;
 }
 
 declare class mxUtilsType {
     bind: (
         scope: Object,
-        funct: Function) => Function;
+        funct: Function,
+        ...args: any[]) => Function;
 
     button: (label: string,
         funct: Function,
@@ -617,7 +628,7 @@ declare class mxDragSource {
 
     mouseMove(evt: Event): void;
 
-    mouseUp(evt: Event): void;
+    mouseUp: Function | ((e: Event) => void);
 
     mouseDown(evt: Event): void;
 
@@ -635,6 +646,14 @@ declare class mxDragSource {
 
     createPreviewElement(
         graph: mxGraph): HTMLElement;
+
+    drop(
+        graph: mxGraph,
+        evt: Event,
+        dropTarget: mxCell,
+        x: number,
+        y: number): mxCell;
+
 }
 
 declare class mxPopupMenuType {

@@ -2,8 +2,14 @@
 /******************      View          **************/
 declare class mxCellState {
 
-    cell: any;
+    cell: mxCell;
 
+    style: Dictionary<any>;
+
+    x: number;
+    y: number;
+
+    absolutePoints: mxPoint[];
 }
 
 declare class mxEdgeStyle {
@@ -42,12 +48,43 @@ declare class mxEdgeStyle {
 declare class mxStylesheet {
 }
 
-declare class mxGraph {
+declare class mxGraphView extends mxEventSource {
+    getState(
+        cell: mxCell,
+        create?: boolean): mxCellState;
+
+    getCanvas(): SVGElement;
+    canvas: HTMLElement;
+
+    drawPane: HTMLElement;
+
+    scaleAndTranslate(
+        scale: number,
+        dx: number,
+        dy: number): void;
+
+    setTranslate(
+        dx: number,
+        dy: number): void;
+
+    translate: mxPoint;
+
+    scale: number;
+}
+
+declare class mxGraph extends mxEventSource {
+
+    constructor(
+        container: HTMLElement,
+        model: mxGraphModel,
+        renderHint: string,
+        stylesheet: mxStylesheet);
+
     container: HTMLElement;
     mouseListeners;
     isMouseDown;
     model;
-    view;
+    view: mxGraphView;
     stylesheet: mxStylesheet;
     selectionModel;
     cellEditor;
@@ -198,7 +235,7 @@ declare class mxGraph {
     sizeDidChange();
     doResizeContainer(width, height);
     updatePageBreaks(visible, width, height);
-    getCellStyle(cell);
+    getCellStyle(cell: mxCell): Dictionary<string>;
     postProcessCellStyle(style);
     setCellStyle(style, cells);
     toggleCellStyle(key, defaultValue, cell);
@@ -250,7 +287,7 @@ declare class mxGraph {
     constrainChildCells(cell);
     scaleCell(cell, dx, dy, recurse);
     extendParent(cell);
-    importCells(cells, dx, dy, target, evt);
+    importCells(cells, dx, dy, target, evt?);
     moveCells(cells, dx, dy, clone, target, evt);
     cellsMoved(cells, dx, dy, disconnect, constrain, extend);
     translateCell(cell, dx, dy);
@@ -288,9 +325,9 @@ declare class mxGraph {
     zoom(factor, center);
     zoomToRect(rect);
     fit(border, keepOrigin);
-    scrollCellToVisible(cell, center);
+    scrollCellToVisible(cell, center?);
     scrollRectToVisible(rect);
-    getCellGeometry(cell);
+    getCellGeometry(cell: mxCell): mxGeometry;
     isCellVisible(cell);
     isCellCollapsed(cell);
     isCellConnectable(cell);
@@ -467,8 +504,8 @@ declare class mxGraph {
     isSelectionEmpty();
     clearSelection();
     getSelectionCount();
-    getSelectionCell();
-    getSelectionCells();
+    getSelectionCell(): mxCell;
+    getSelectionCells(): mxCell[];
     setSelectionCell(cell);
     setSelectionCells(cells);
     addSelectionCell(cell);
@@ -499,7 +536,11 @@ declare class mxGraph {
     fireMouseEvent(evtName, me, sender);
     fireGestureEvent(evt, cell);
     destroy();
+    setTooltips(enabled: boolean): void;
+}
 
+declare class mxLayoutManager {
+    getLayout(parent): mxGraphLayout;
 }
 
 /******************      View end      **************/
