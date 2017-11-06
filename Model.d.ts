@@ -91,6 +91,8 @@ declare class mxGeometry extends mxRectangle {
 }
 
 declare class mxGraphModel {
+    beginUpdate():void;
+    endUpdate():void;
 }
 
     /******************      Model end     **************/

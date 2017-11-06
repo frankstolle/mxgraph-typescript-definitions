@@ -26,7 +26,8 @@
 /// <reference path="Handlers.d.ts"/>
 /// <reference path="Shape.d.ts"/>
 
-declare class mxClientType {    IS_CHROMEAPP: boolean;
+declare class mxClientType {
+    IS_CHROMEAPP: boolean;
     IS_EDGE: boolean;
     IS_EM: boolean;
     IS_FF: boolean;
@@ -64,3 +65,5 @@ declare class mxClientType {    IS_CHROMEAPP: boolean;
 }
 
 declare var mxClient: mxClientType;
+declare var mxLoadStylesheets:boolean;
+declare var mxLoadResources:boolean;

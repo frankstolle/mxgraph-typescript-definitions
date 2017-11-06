@@ -72,13 +72,13 @@ declare class mxGraphView extends mxEventSource {
     scale: number;
 }
 
-declare class mxGraph extends mxEventSource {
+declare class _mxGraph extends mxEventSource {
 
     constructor(
         container: HTMLElement,
-        model: mxGraphModel,
-        renderHint: string,
-        stylesheet: mxStylesheet);
+        model?: mxGraphModel,
+        renderHint?: string,
+        stylesheet?: mxStylesheet);
 
     container: HTMLElement;
     mouseListeners;
@@ -201,7 +201,7 @@ declare class mxGraph extends mxEventSource {
     createGraphView();
     createCellRenderer();
     createCellEditor();
-    getModel();
+    getModel():mxGraphModel;
     getView();
     getStylesheet();
     setStylesheet(stylesheet);
@@ -258,7 +258,8 @@ declare class mxGraph extends mxEventSource {
     removeCellsFromParent(cells);
     updateGroupBounds(cells, border, moveGroup);
     cloneCells(cells, allowInvalidEdges);
-    insertEdge(parent, id, value, source, target, style);
+    insertVertex(parent, id:string | null, value, x:number, y:number, width:number, height:number, style?, relative?):mxCell;
+    insertEdge(parent, id, value, source, target, style?);
     createEdge(parent, id, value, source, target, style);
     addEdge(edge, parent, source, target, index);
     addCell(cell, parent, index, source, target);
@@ -479,8 +480,8 @@ declare class mxGraph extends mxEventSource {
     isValidDropTarget(cell, cells, evt);
     isSplitTarget(target, cells, evt);
     getDropTarget(cells, evt, cell);
-    getDefaultParent();
-    setDefaultParent(cell);
+    getDefaultParent():mxCell;
+    setDefaultParent(cell:mxCell);
     getSwimlane(cell);
     getCellAt(x, y, parent, vertices, edges);
     intersects(state, x, y);
